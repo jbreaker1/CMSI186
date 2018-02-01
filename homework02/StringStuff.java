@@ -166,6 +166,20 @@ public class StringStuff{
    * @param args String array containing command line parameters
    */
    public static void main( String args[] ) {
+      try {
+        if (args.length == 1){
+          String test = args[0].toString();
+          System.out.println("Does it contain a vowel? " + containsVowel(test));
+          System.out.println("Is it a palindrome " + isPalindrome(test));
+          System.out.println("evensOnly() returns: " + evensOnly(test));
+          System.out.println("evensOnlyNoDupes() returns: " + evensOnlyNoDupes(test));
+          System.out.println( "oddsOnly() returns: " + oddsOnly(test));
+          System.out.println( "oddsOnlyNoDupes() returns: " + oddsOnlyNoDupes(test));
+          System.out.println( "reverse() returns: " + reverse(test) );
+        }
+      } catch (Exception e){
+        System.out.println("Invalid input");
+      }
       String blah = new String( "Blah blah blah" );
       String woof = new String( "BCDBCDBCDBCDBCD" );
       String pal1 = new String( "a" );
