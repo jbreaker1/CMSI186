@@ -46,8 +46,8 @@ public class DiceSet {
    */
    public DiceSet( int count, int sides ) {
       ds = new Die[count];
-      count = count;
-      sides = sides;
+      this.count = count;
+      this.sides = sides;
       for (int i = 0; i < ds.length; i++){
           ds[i] = new Die(sides);
       }
@@ -64,6 +64,9 @@ public class DiceSet {
       return sum;
    }
 
+   public int getCount(){
+     return this.count;
+   }
   /**
    * Randomly rolls all of the dice in this set
    *  NOTE: you will need to use one of the "toString()" methods to obtain
@@ -82,7 +85,7 @@ public class DiceSet {
    * @trhows IllegalArgumentException if the index is out of range
    */
    public int rollIndividual( int dieIndex ) {
-      if(count < dieIndex){return ds[dieIndex].roll();}
+      if(this.count >= dieIndex){return ds[dieIndex].roll();}
       else{throw new IllegalArgumentException("Not a valid Index");}
    }
 
@@ -92,7 +95,7 @@ public class DiceSet {
    * @trhows IllegalArgumentException if the index is out of range
    */
    public int getIndividual( int dieIndex ) {
-     if(count < dieIndex){return ds[dieIndex].getValue();}
+     if(this.count >= dieIndex){return ds[dieIndex].getValue();}
      else{throw new IllegalArgumentException("Not a valid Index");}
    }
 
@@ -102,18 +105,21 @@ public class DiceSet {
    public String toString() {
      String result = "";
      for(int i = 0; i < this.ds.length; i++){
-       result += "Dice at position " + i + " has a currentValue of " + this.ds[i].getValue() + "\n";
+       result += ds[i].toString() + "\n";
      }
       return result;
    }
 
+   public Die[] getDS(){
+     return this.ds;
+   }
   /**
    * @return Class-wide version of the preceding instance method
    */
    public static String toString( DiceSet ds ) {
      String result = "";
      for(int i = 0; i < ds.ds.length; i++){
-       result += "Dice at position " + i + " has a currentValue of " + ds.ds[i].getValue() + "\n";
+       result += ds.ds[i].toString() + "\n";
      }
       return result;
     }
@@ -138,17 +144,37 @@ public class DiceSet {
    public static void main( String[] args ) {
       DiceSet d = new DiceSet(5, 5);
       System.out.println("First Set\n" + d);
-      DiceSet e = new DiceSet(5,5);
-      System.out.println("Second Set\n" + e);
-      System.out.println("Identical? " + d.isIdentical(e));
+      DiceSet f = new DiceSet(5,5);
+      System.out.println("Second Set\n" + f);
+      System.out.println("Identical? " + d.isIdentical(f));
       System.out.println("Sum " + d.sum());
       d.roll();
       System.out.println("Rolled Set one \n" + d.toString(d));
       System.out.println("Get the 4th elementh " + d.getIndividual(3));
       System.out.println("Roll the 4th Element " + d.rollIndividual(3));
       System.out.println("First Set\n" + d);
-      System.out.println("Identical? " + d.isIdentical(e));
+      System.out.println("Identical? " + d.isIdentical(f));
       System.out.println("Sum " + d.sum());
+      try{
+        DiceSet w = new DiceSet(1 , 1);
+      }
+      catch(Exception e){
+        System.out.println("Sides should be greater than or equal to 4");
+      }
+      try{
+        DiceSet w = new DiceSet(5 , 5);
+        d.getIndividual(6);
+      }
+      catch(Exception e){
+        System.out.println("Not a valid index");
+      }
+      try{
+        DiceSet w = new DiceSet(9 , 9);
+        d.rollIndividual(11);
+      }
+      catch(Exception e){
+        System.out.println("Not a valid index");
+      }
    }
 
 }

@@ -140,6 +140,7 @@ public class Die {
       catch (Exception e){
         System.out.println("Too low of a dice value");
       }
+      
    }
 
 }
