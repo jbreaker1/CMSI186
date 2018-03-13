@@ -35,29 +35,24 @@ public class Clock {
    private int minutes;
    private double seconds;
    private double angle;
+   private double second;
 
    public Clock() {
      ticks = 60.0;
-     hours = 0;
-     minutes = 0;
-     seconds = 0;
      angle = 180.0;
+     second = 0.0;
    }
 
    public Clock(double angle) {
      ticks = 60.0;
-     hours = 0;
-     minutes = 0;
-     seconds = 0;
      angle = angle;
+     second = 0.0;
    }
 
    public Clock(double angle, double timeSlice) {
      ticks = timeSlice;
-     hours = 0;
-     minutes = 0;
-     seconds = 0;
      angle = angle;
+     second = 0.0;
    }
 
   /**
@@ -67,18 +62,19 @@ public class Clock {
    *  @return double-precision value of the current clock tick
    */
    public double tick() {
-      seconds += ticks % 60;
-      minutes += (int)(ticks / 60);
-      hours += (int)(ticks / 3600);
-      while(seconds > 60) {
-          minutes++;
-          seconds = seconds / 60;
-      }
-      while(minutes > 60) {
-          hours++;
-          minutes = minutes / 60;
-      }
-      return ticks;
+      second += ticks;
+      // seconds += ticks % 60;
+      // minutes += (int)(ticks / 60);
+      // hours += (int)(ticks / 3600);
+      // while(seconds > 60) {
+      //     minutes++;
+      //     seconds = seconds / 60;
+      // }
+      // while(minutes > 60) {
+      //     hours++;
+      //     minutes = minutes / 60;
+      // }
+      return second;
    }
 
   /**
@@ -120,7 +116,7 @@ public class Clock {
    *  @return double-precision value of the hour hand location
    */
    public double getHourHandAngle() {
-      return HOUR_HAND_DEGREES_PER_SECOND * (hours * 3600 + minutes * 60 + seconds);
+      return HOUR_HAND_DEGREES_PER_SECOND * second % 360;
    }
 
   /**
@@ -128,7 +124,7 @@ public class Clock {
    *  @return double-precision value of the minute hand location
    */
    public double getMinuteHandAngle() {
-     return MINUTE_HAND_DEGREES_PER_SECOND * (minutes * 60 + seconds);
+     return MINUTE_HAND_DEGREES_PER_SECOND * second % 360;
    }
 
   /**
@@ -149,7 +145,7 @@ public class Clock {
    *  @return double-precision value the total seconds private variable
    */
    public double getTotalSeconds() {
-      return hours*3600 + minutes*60 + seconds;
+      return second;
    }
 
   /**
@@ -157,7 +153,7 @@ public class Clock {
    *  @return String value of the current clock
    */
    public String toString() {
-      return "The time is " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds";
+      return "The time is " + (int)second/3600 + " hours, " + (int)second/60%60 + " minutes, " + second%60 + " seconds";
    }
 
    public boolean stop() {

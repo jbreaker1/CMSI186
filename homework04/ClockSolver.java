@@ -94,7 +94,8 @@ public class ClockSolver {
       double[] timeValues = new double[3];
       int count = 0;
       while(cse.clock.stop()) {
-          if (cse.clock.getHandAngle() >= Double.parseDouble(args[0])-cse.getEpsilon() && cse.clock.getHandAngle() <= Double.parseDouble(args[0])+cse.getEpsilon() ){
+          if (cse.clock.getHandAngle() - Double.parseDouble(args[0]) <= cse.getEpsilon() && cse.clock.getHandAngle() - Double.parseDouble(args[0]) >= 0
+              || Double.parseDouble(args[0])-cse.clock.getHandAngle() <= cse.getEpsilon() && Double.parseDouble(args[0]) - cse.clock.getHandAngle() >= 0){
             System.out.println(cse.clock);
             count++;
           }
