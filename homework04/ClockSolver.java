@@ -17,14 +17,16 @@
  *           -----  ----------  ------------  -----------------------------------------------------------
  *  @version 1.0.0  2017-02-28  B.J. Johnson  Initial writing and release
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
 public class ClockSolver {
   /**
    *  Class field definintions go here
    */
    private final double MAX_TIME_SLICE_IN_SECONDS  = 1800.00;
    private final double DEFAULT_TIME_SLICE_SECONDS = 60.0;
-   private final double EPSILON_VALUE              = 0.1;      // small value for double-precision comparisons
+   private final double EPSILON_VALUE              = 5;      // small value for double-precision comparisons
+   private double targetAngle = 0.0;
+   private double targetSlice = 0.0;
+   public Clock clock;
 
   /**
    *  Constructor
@@ -43,7 +45,7 @@ public class ClockSolver {
      //  your simulation will find all the angles in the 12-hour day at which those angles occur
      // args[1] if present will specify a time slice value; if not present, defaults to 60 seconds
      // you may want to consider using args[2] for an "angle window"
-
+      Clock c = new Clock();
       System.out.println( "\n   Hello world, from the ClockSolver program!!\n\n" ) ;
       if( 0 == args.length ) {
          System.out.println( "   Sorry you must enter at least one argument\n" +
@@ -51,7 +53,31 @@ public class ClockSolver {
                              "   Please try again..........." );
          System.exit( 1 );
       }
-      Clock clock = new Clock();
+      else if(args.length == 1){
+        targetAngle = c.validateAngleArg(args[0]);
+        clock = new Clock(targetAngle);
+        if(targetAngle == -1){
+          throw new IllegalArgumentException("Not a valid angle must be between 0 and 360");
+        }
+      }
+      else if(args.length == 2){
+        targetAngle = c.validateAngleArg(args[0]);
+        targetSlice = c.validateTimeSliceArg(args[1]);
+        clock = new Clock(targetAngle, targetSlice);
+        if(targetAngle == -1){
+          throw new IllegalArgumentException("Not a valid angle must be between 0 and 360");
+        }
+        if(targetSlice == -1){
+          throw new IllegalArgumentException("Not a valid timeslice");
+        }
+      }
+      else{
+        throw new IllegalArgumentException("Too many arguments");
+      }
+   }
+
+   public double getEpsilon(){
+      return EPSILON_VALUE;
    }
 
   /**
@@ -64,11 +90,18 @@ public class ClockSolver {
    */
    public static void main( String args[] ) {
       ClockSolver cse = new ClockSolver();
-      Clock clock    = new ClockEmpty();
-      double[] timeValues = new double[3];
       cse.handleInitialArguments( args );
-      while( true ) {
-         break;
+      double[] timeValues = new double[3];
+      int count = 0;
+      while(cse.clock.stop()) {
+          if (cse.clock.getHandAngle() >= Double.parseDouble(args[0])-cse.getEpsilon() && cse.clock.getHandAngle() <= Double.parseDouble(args[0])+cse.getEpsilon() ){
+            System.out.println(cse.clock);
+            count++;
+          }
+          cse.clock.tick();
+      }
+      if(count == 0){
+          System.out.println("No angles found");
       }
       System.exit( 0 );
    }

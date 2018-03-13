@@ -31,14 +31,33 @@ public class Clock {
    *  Constructor goes here
    */
    private double ticks;
-   private double hours;
-   private double minutes;
+   private int hours;
+   private int minutes;
    private double seconds;
+   private double angle;
+
    public Clock() {
      ticks = 60.0;
-     hours = 0.0;
-     minutes = 0.0;
-     seconds = 0.0;
+     hours = 0;
+     minutes = 0;
+     seconds = 0;
+     angle = 180.0;
+   }
+
+   public Clock(double angle) {
+     ticks = 60.0;
+     hours = 0;
+     minutes = 0;
+     seconds = 0;
+     angle = angle;
+   }
+
+   public Clock(double angle, double timeSlice) {
+     ticks = timeSlice;
+     hours = 0;
+     minutes = 0;
+     seconds = 0;
+     angle = angle;
    }
 
   /**
@@ -51,11 +70,11 @@ public class Clock {
       seconds += ticks % 60;
       minutes += (int)(ticks / 60);
       hours += (int)(ticks / 3600);
-      while(seconds >= 60) {
+      while(seconds > 60) {
           minutes++;
           seconds = seconds / 60;
       }
-      while(minutes >= 60) {
+      while(minutes > 60) {
           hours++;
           minutes = minutes / 60;
       }
@@ -117,7 +136,11 @@ public class Clock {
    *  @return double-precision value of the angle between the two hands
    */
    public double getHandAngle() {
-      return Math.abs(getHourHandAngle() - getMinuteHandAngle());
+      double item = Math.abs(getHourHandAngle() - getMinuteHandAngle());
+      if(item > 180){
+        return 360 - item;
+      }
+      return item;
    }
 
   /**
@@ -137,6 +160,9 @@ public class Clock {
       return "The time is " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds";
    }
 
+   public boolean stop() {
+      return getTotalSeconds() < 43200;
+   }
   /**
    *  The main program starts here
    *  remember the constraints from the project description
@@ -155,12 +181,53 @@ public class Clock {
       System.out.print( "      sending '  0 degrees', expecting double value   0.0" );
       try { System.out.println( (0.0 == clock.validateAngleArg( "0.0" )) ? " - got 0.0" : " - no joy" ); }
       catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
-      while(clock.getTotalSeconds() < 43200){
-        System.out.println(clock);
-        System.out.println("The hour hand angle is " + clock.getHourHandAngle());
-        System.out.println("The minute hand angle is " + clock.getMinuteHandAngle());
-        System.out.println("The angle between hands is " + clock.getHandAngle() + "\n");
-        clock.tick();
+      try { System.out.println( (12.0 == clock.validateAngleArg( "12.0" )) ? " - Sending 12.0 degrees and got 12.0" : " - no joy" ); }
+      catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+      try { System.out.println( (300.0 == clock.validateAngleArg( "300.0" )) ? " - Sending 300 .0degrees and got 300.0" : " - no joy" ); }
+      catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+      try { System.out.println( (-1 == clock.validateAngleArg( "370.0" )) ? " - Sending 370.0 degrees should return -1" : " - no joy" ); }
+      catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+      try { System.out.println( (-1 == clock.validateAngleArg( "ABC" )) ? " - Sending ABC should throw an error" : " - no joy" ); }
+      catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+      System.out.println("Testing validateTimeSliceArg");
+      try { System.out.println( (-1 == clock.validateTimeSliceArg( "0.0" )) ? " - Sending 0.0 for timeslice got -1" : " - no joy" ); }
+      catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+      try { System.out.println( (12.0 == clock.validateTimeSliceArg( "12.0" )) ? " - Sending 12.0 for timeslice and got 12.0" : " - no joy" ); }
+      catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+      try { System.out.println( (300.0 == clock.validateTimeSliceArg( "300.0" )) ? " - Sending 300.0 for timeslice and got 300.0" : " - no joy" ); }
+      catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+      try { System.out.println( (370.0 == clock.validateTimeSliceArg( "370.0" )) ? " - Sending 370.0 for timeslice and got 370.0" : " - no joy" ); }
+      catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+      try { System.out.println( (1000.0 == clock.validateTimeSliceArg( "1000.0" )) ? " - Sending 1000.0 for timeslice and got 1000.0" : " - no joy" ); }
+      catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+      try { System.out.println( (-1 == clock.validateTimeSliceArg( "1800.0" )) ? " - Sending 1800.0 for timeslice should get -1" : " - no joy" ); }
+      catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+      try { System.out.println( (-1 == clock.validateTimeSliceArg( "ABC" )) ? " - Should throw error" : " - no joy" ); }
+      catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+      Clock clock2 = new Clock();
+      clock2.validateTimeSliceArg("120");
+      double minuteAngle = 0.0;
+      double hourAngle = 0.0;
+      double handAngle = 0.0;
+      System.out.println("First 10 angles for a clock with Timeslice of 120");
+      for (int i = 0; i < 10; i++){
+          try { System.out.println( (handAngle == clock2.getHandAngle()) ? " - Correct hand angle" : " - no joy" ); }
+          catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+          try { System.out.println( (minuteAngle == clock2.getMinuteHandAngle()) ? " - Correct minute angle" : " - no joy" ); }
+          catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+          System.out.println();
+          minuteAngle += 12.0;
+          handAngle += 10.9992;
+          clock2.tick();
+      }
+      Clock c3 = new Clock();
+      System.out.println("Entire clock cycle with Timeslice of 60");
+      while(c3.stop()){
+        System.out.println(c3);
+        System.out.println("The hour hand angle is " + c3.getHourHandAngle());
+        System.out.println("The minute hand angle is " + c3.getMinuteHandAngle());
+        System.out.println("The angle between hands is " + c3.getHandAngle() + "\n");
+        c3.tick();
       }
 
     }
