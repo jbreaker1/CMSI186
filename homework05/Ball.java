@@ -65,7 +65,7 @@ public class Ball {
 
     public String toString(){
       DecimalFormat df = new DecimalFormat("#.##");
-      return "This ball is currently at (" + df.format(this.xVal) + ", " + df.format(this.yVal) + ") and a velocity in the x of " + df.format(this.xVelocity) + " and a velocity in the y of " + df.format(this.yVelocity) + " a time slice of " + df.format(this.tick);
+      return "This ball is currently at <" + df.format(this.xVal) + ", " + df.format(this.yVal) + "> with a velocity of <" + df.format(this.xVelocity) + ", " + df.format(this.yVelocity) + "> at " + df.format(this.totalSeconds) + " seconds";
     }
 
     public boolean collision(Ball ball1, Ball ball2){
@@ -112,13 +112,17 @@ public class Ball {
     }
 
     public static void main( String args[] ) {
-        Ball a = new Ball(1,1,1,1);
-        Ball b = new Ball(1,1,2,2);
-        Ball c = new Ball(2,2,0,0);
-        Ball d = new Ball(2,2,2,0);
+        Ball a = new Ball(1, 1, 1, 1);
+        Ball b = new Ball(1, 1, 2, 2);
+        Ball c = new Ball(2, 2, 0, 0);
+        Ball d = new Ball(2, 2, 2, 0);
+        Ball e = new Ball(10, 10, -5, -5, 10);
+        Ball f = new Ball(5, 15, -5, -10, 10);
+        Ball g = new Ball(3, 3, -5, -5, 10);
         Ball[] list = {a, b, c};
         Ball[] list2 = {c};
         Ball[] list3 = {d};
+        Ball[] list4 = {e,f,g};
         if(a.isPossible(list)){
             System.out.println("Correct should be possible moves");
         }
@@ -131,5 +135,19 @@ public class Ball {
         b.collide(list);
         b.movement(list);
         System.out.println(b);
+        for (int i = 0; i < 25; i++){
+            a.movement(list);
+            a.collide(list);
+            for(Ball ball : list){
+                System.out.println(ball);
+            }
+        }
+        for (int i = 0; i < 25; i++){
+            e.movement(list4);
+            g.collide(list4);
+            for(Ball ball : list4){
+                System.out.println(ball);
+            }
+        }
     }
 }
