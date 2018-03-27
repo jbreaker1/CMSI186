@@ -2,16 +2,18 @@ import java.text.DecimalFormat;
 
 public class Ball {
 
+    private static final double INCHES_FEET = 12;
+    private static final double radius = 4.45/INCHES_FEET;
+    private static final double poleX = 300;
+    private static final double poleY = 300;
+
     private double xVal;
     private double yVal;
     private double xVelocity;
     private double yVelocity;
-    private static final double INCHES_FEET = 12;
-    private static final double radius = 4.45/INCHES_FEET;
-    private static final int poleX = 300;
-    private static final int poleY = 300;
     private double tick = 1.0;
     private double totalSeconds = 0;
+    private boolean hasCollided = false;
 
     public Ball(double x, double y, double xVel, double yVel){
         xVal = x;
@@ -50,11 +52,11 @@ public class Ball {
         for(int i = 0; i < list.length; i++){
             Ball ball = list[i];
             ball.totalSeconds += tick;
-            if(convertToInches(ball.xVelocity - (ball.xVelocity * .01) * this.tick) > 1){
+            if(Math.abs(convertToInches(ball.xVelocity - (ball.xVelocity * .01) * this.tick)) > 1){
               ball.xVal += ball.xVelocity;
               ball.xVelocity -= (ball.xVelocity * .01) * this.tick;
             }
-            if(convertToInches(ball.yVelocity - (ball.yVelocity * .01) * this.tick) > 1){
+            if(Math.abs(convertToInches(ball.yVelocity - (ball.yVelocity * .01) * this.tick)) > 1){
               ball.yVal += ball.yVelocity;
               ball.yVelocity -= (ball.yVelocity * .01) * this.tick;
             }
@@ -70,7 +72,23 @@ public class Ball {
         double diameter = radius*2;
         double distanceX = Math.abs(ball1.xVal - ball2.xVal);
         double distanceY = Math.abs(ball1.yVal - ball2.yVal);
+        double distanceXP= Math.abs(poleX - ball1.xVal);
+        double distanceYP = Math.abs(poleY - ball1.yVal);
+        double distanceXP2= Math.abs(poleX - ball2.xVal);
+        double distanceYP2 = Math.abs(poleY - ball2.yVal);
+
+        if(diameter > distanceXP || diameter > distanceYP){
+            System.out.println(ball1.yVal + " and collided with a pole");
+            hasCollided = true;
+            return false;
+        }
+        if(diameter > distanceXP2 || diameter > distanceYP2){
+            System.out.println(ball2 + " and collided with a pole");
+            hasCollided = true;
+            return false;
+        }
         if (diameter > distanceX || diameter > distanceY){
+            hasCollided = true;
             return true;
         }
         return false;
@@ -84,6 +102,13 @@ public class Ball {
               }
           }
         }
+    }
+
+    public boolean getCollided(){
+        return hasCollided;
+    }
+    public double getTotalSeconds(){
+        return totalSeconds;
     }
 
     public static void main( String args[] ) {

@@ -1,11 +1,16 @@
 public class SoccerSim {
-  private Ball[] list;
-
-  public SoccerSim(Ball[] listOfBalls){
-      list = listOfBalls;
+  private Ball[] item;
+  public SoccerSim(Ball[] ballList){
+      item = ballList;
   }
-
-
+  // Prints an update of each Ball at the amount of Total Seconds
+  public void update(Ball[] list){
+      System.out.println("Progress Report");
+      System.out.println("At " + list[0].getTotalSeconds() + " seconds all balls");
+      for(int i = 0; i < list.length; i++){
+          System.out.println(list[i]);
+      }
+  }
 
   public static void main( String args[] ) {
       if (args.length > 3){
@@ -30,6 +35,10 @@ public class SoccerSim {
          while (list[0].isPossible(list)){
             list[0].movement(list);
             list[0].collide(list);
+            // Don't call update cause then it causes too many lies to print
+         }
+         if(!list[0].getCollided()){
+            System.out.println("No collisions");
          }
       }
     else{
