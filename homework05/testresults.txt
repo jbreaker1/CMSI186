@@ -1,0 +1,292 @@
+.                                       
+.                                       
+======================================  
+... Testing Ball class ...              
+======================================  
+Correct should be possible moves
+Correct shouldn't be able to move
+Correct should be able to move
+Ball 1 This ball is currently at <1, 1> with a velocity of <1, 1> at 0 seconds collided with Ball 2 This ball is currently at <1, 1> with a velocity of <2, 2> at 0 seconds
+
+This ball is currently at <3, 3> with a velocity of <1.98, 1.98> at 1 seconds
+This ball is currently at <2.99, 2.99> with a velocity of <0.98, 0.98> at 2 seconds
+This ball is currently at <4.98, 4.98> with a velocity of <1.96, 1.96> at 2 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 2 seconds
+This ball is currently at <3.97, 3.97> with a velocity of <0.97, 0.97> at 3 seconds
+This ball is currently at <6.94, 6.94> with a velocity of <1.94, 1.94> at 3 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 3 seconds
+This ball is currently at <4.94, 4.94> with a velocity of <0.96, 0.96> at 4 seconds
+This ball is currently at <8.88, 8.88> with a velocity of <1.92, 1.92> at 4 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 4 seconds
+This ball is currently at <5.9, 5.9> with a velocity of <0.95, 0.95> at 5 seconds
+This ball is currently at <10.8, 10.8> with a velocity of <1.9, 1.9> at 5 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 5 seconds
+This ball is currently at <6.85, 6.85> with a velocity of <0.94, 0.94> at 6 seconds
+This ball is currently at <12.7, 12.7> with a velocity of <1.88, 1.88> at 6 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 6 seconds
+This ball is currently at <7.79, 7.79> with a velocity of <0.93, 0.93> at 7 seconds
+This ball is currently at <14.59, 14.59> with a velocity of <1.86, 1.86> at 7 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 7 seconds
+This ball is currently at <8.73, 8.73> with a velocity of <0.92, 0.92> at 8 seconds
+This ball is currently at <16.45, 16.45> with a velocity of <1.85, 1.85> at 8 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 8 seconds
+This ball is currently at <9.65, 9.65> with a velocity of <0.91, 0.91> at 9 seconds
+This ball is currently at <18.3, 18.3> with a velocity of <1.83, 1.83> at 9 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 9 seconds
+This ball is currently at <10.56, 10.56> with a velocity of <0.9, 0.9> at 10 seconds
+This ball is currently at <20.12, 20.12> with a velocity of <1.81, 1.81> at 10 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 10 seconds
+This ball is currently at <11.47, 11.47> with a velocity of <0.9, 0.9> at 11 seconds
+This ball is currently at <21.93, 21.93> with a velocity of <1.79, 1.79> at 11 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 11 seconds
+This ball is currently at <12.36, 12.36> with a velocity of <0.89, 0.89> at 12 seconds
+This ball is currently at <23.72, 23.72> with a velocity of <1.77, 1.77> at 12 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 12 seconds
+This ball is currently at <13.25, 13.25> with a velocity of <0.88, 0.88> at 13 seconds
+This ball is currently at <25.5, 25.5> with a velocity of <1.76, 1.76> at 13 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 13 seconds
+This ball is currently at <14.13, 14.13> with a velocity of <0.87, 0.87> at 14 seconds
+This ball is currently at <27.25, 27.25> with a velocity of <1.74, 1.74> at 14 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 14 seconds
+This ball is currently at <14.99, 14.99> with a velocity of <0.86, 0.86> at 15 seconds
+This ball is currently at <28.99, 28.99> with a velocity of <1.72, 1.72> at 15 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 15 seconds
+This ball is currently at <15.85, 15.85> with a velocity of <0.85, 0.85> at 16 seconds
+This ball is currently at <30.71, 30.71> with a velocity of <1.7, 1.7> at 16 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 16 seconds
+This ball is currently at <16.71, 16.71> with a velocity of <0.84, 0.84> at 17 seconds
+This ball is currently at <32.41, 32.41> with a velocity of <1.69, 1.69> at 17 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 17 seconds
+This ball is currently at <17.55, 17.55> with a velocity of <0.83, 0.83> at 18 seconds
+This ball is currently at <34.1, 34.1> with a velocity of <1.67, 1.67> at 18 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 18 seconds
+This ball is currently at <18.38, 18.38> with a velocity of <0.83, 0.83> at 19 seconds
+This ball is currently at <35.77, 35.77> with a velocity of <1.65, 1.65> at 19 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 19 seconds
+This ball is currently at <19.21, 19.21> with a velocity of <0.82, 0.82> at 20 seconds
+This ball is currently at <37.42, 37.42> with a velocity of <1.64, 1.64> at 20 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 20 seconds
+This ball is currently at <20.03, 20.03> with a velocity of <0.81, 0.81> at 21 seconds
+This ball is currently at <39.05, 39.05> with a velocity of <1.62, 1.62> at 21 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 21 seconds
+This ball is currently at <20.84, 20.84> with a velocity of <0.8, 0.8> at 22 seconds
+This ball is currently at <40.67, 40.67> with a velocity of <1.6, 1.6> at 22 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 22 seconds
+This ball is currently at <21.64, 21.64> with a velocity of <0.79, 0.79> at 23 seconds
+This ball is currently at <42.28, 42.28> with a velocity of <1.59, 1.59> at 23 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 23 seconds
+This ball is currently at <22.43, 22.43> with a velocity of <0.79, 0.79> at 24 seconds
+This ball is currently at <43.86, 43.86> with a velocity of <1.57, 1.57> at 24 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 24 seconds
+This ball is currently at <23.22, 23.22> with a velocity of <0.78, 0.78> at 25 seconds
+This ball is currently at <45.44, 45.44> with a velocity of <1.56, 1.56> at 25 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 25 seconds
+This ball is currently at <24, 24> with a velocity of <0.77, 0.77> at 26 seconds
+This ball is currently at <46.99, 46.99> with a velocity of <1.54, 1.54> at 26 seconds
+This ball is currently at <2, 2> with a velocity of <0, 0> at 26 seconds
+Ball 1 This ball is currently at <5, 5> with a velocity of <-4.5, -4.5> at 10 seconds collided with Ball 2 This ball is currently at <0, 5> with a velocity of <-4.5, -9> at 10 seconds
+
+This ball is currently at <5, 5> with a velocity of <-4.5, -4.5> at 10 seconds
+This ball is currently at <0, 5> with a velocity of <-4.5, -9> at 10 seconds
+This ball is currently at <-2, -2> with a velocity of <-4.5, -4.5> at 10 seconds
+This ball is currently at <0.5, 0.5> with a velocity of <-4.05, -4.05> at 20 seconds
+This ball is currently at <-4.5, -4> with a velocity of <-4.05, -8.1> at 20 seconds
+This ball is currently at <-6.5, -6.5> with a velocity of <-4.05, -4.05> at 20 seconds
+This ball is currently at <-3.55, -3.55> with a velocity of <-3.64, -3.64> at 30 seconds
+This ball is currently at <-8.55, -12.1> with a velocity of <-3.64, -7.29> at 30 seconds
+This ball is currently at <-10.55, -10.55> with a velocity of <-3.64, -3.64> at 30 seconds
+This ball is currently at <-7.19, -7.19> with a velocity of <-3.28, -3.28> at 40 seconds
+This ball is currently at <-12.2, -19.39> with a velocity of <-3.28, -6.56> at 40 seconds
+This ball is currently at <-14.2, -14.2> with a velocity of <-3.28, -3.28> at 40 seconds
+This ball is currently at <-10.48, -10.48> with a velocity of <-2.95, -2.95> at 50 seconds
+This ball is currently at <-15.48, -25.95> with a velocity of <-2.95, -5.9> at 50 seconds
+This ball is currently at <-17.48, -17.48> with a velocity of <-2.95, -2.95> at 50 seconds
+This ball is currently at <-13.43, -13.43> with a velocity of <-2.66, -2.66> at 60 seconds
+This ball is currently at <-18.43, -31.86> with a velocity of <-2.66, -5.31> at 60 seconds
+This ball is currently at <-20.43, -20.43> with a velocity of <-2.66, -2.66> at 60 seconds
+This ball is currently at <-16.09, -16.09> with a velocity of <-2.39, -2.39> at 70 seconds
+This ball is currently at <-21.09, -37.17> with a velocity of <-2.39, -4.78> at 70 seconds
+This ball is currently at <-23.09, -23.09> with a velocity of <-2.39, -2.39> at 70 seconds
+This ball is currently at <-18.48, -18.48> with a velocity of <-2.15, -2.15> at 80 seconds
+This ball is currently at <-23.48, -41.95> with a velocity of <-2.15, -4.3> at 80 seconds
+This ball is currently at <-25.48, -25.48> with a velocity of <-2.15, -2.15> at 80 seconds
+This ball is currently at <-20.63, -20.63> with a velocity of <-1.94, -1.94> at 90 seconds
+This ball is currently at <-25.63, -46.26> with a velocity of <-1.94, -3.87> at 90 seconds
+This ball is currently at <-27.63, -27.63> with a velocity of <-1.94, -1.94> at 90 seconds
+This ball is currently at <-22.57, -22.57> with a velocity of <-1.74, -1.74> at 100 seconds
+This ball is currently at <-27.57, -50.13> with a velocity of <-1.74, -3.49> at 100 seconds
+This ball is currently at <-29.57, -29.57> with a velocity of <-1.74, -1.74> at 100 seconds
+This ball is currently at <-24.31, -24.31> with a velocity of <-1.57, -1.57> at 110 seconds
+This ball is currently at <-29.31, -53.62> with a velocity of <-1.57, -3.14> at 110 seconds
+This ball is currently at <-31.31, -31.31> with a velocity of <-1.57, -1.57> at 110 seconds
+This ball is currently at <-25.88, -25.88> with a velocity of <-1.41, -1.41> at 120 seconds
+This ball is currently at <-30.88, -56.76> with a velocity of <-1.41, -2.82> at 120 seconds
+This ball is currently at <-32.88, -32.88> with a velocity of <-1.41, -1.41> at 120 seconds
+This ball is currently at <-27.29, -27.29> with a velocity of <-1.27, -1.27> at 130 seconds
+This ball is currently at <-32.29, -59.58> with a velocity of <-1.27, -2.54> at 130 seconds
+This ball is currently at <-34.29, -34.29> with a velocity of <-1.27, -1.27> at 130 seconds
+This ball is currently at <-28.56, -28.56> with a velocity of <-1.14, -1.14> at 140 seconds
+This ball is currently at <-33.56, -62.12> with a velocity of <-1.14, -2.29> at 140 seconds
+This ball is currently at <-35.56, -35.56> with a velocity of <-1.14, -1.14> at 140 seconds
+This ball is currently at <-29.71, -29.71> with a velocity of <-1.03, -1.03> at 150 seconds
+This ball is currently at <-34.71, -64.41> with a velocity of <-1.03, -2.06> at 150 seconds
+This ball is currently at <-36.71, -36.71> with a velocity of <-1.03, -1.03> at 150 seconds
+This ball is currently at <-30.73, -30.73> with a velocity of <-0.93, -0.93> at 160 seconds
+This ball is currently at <-35.73, -66.47> with a velocity of <-0.93, -1.85> at 160 seconds
+This ball is currently at <-37.73, -37.73> with a velocity of <-0.93, -0.93> at 160 seconds
+This ball is currently at <-31.66, -31.66> with a velocity of <-0.83, -0.83> at 170 seconds
+This ball is currently at <-36.66, -68.32> with a velocity of <-0.83, -1.67> at 170 seconds
+This ball is currently at <-38.66, -38.66> with a velocity of <-0.83, -0.83> at 170 seconds
+This ball is currently at <-32.5, -32.5> with a velocity of <-0.75, -0.75> at 180 seconds
+This ball is currently at <-37.5, -69.99> with a velocity of <-0.75, -1.5> at 180 seconds
+This ball is currently at <-39.5, -39.5> with a velocity of <-0.75, -0.75> at 180 seconds
+This ball is currently at <-33.25, -33.25> with a velocity of <-0.68, -0.68> at 190 seconds
+This ball is currently at <-38.25, -71.49> with a velocity of <-0.68, -1.35> at 190 seconds
+This ball is currently at <-40.25, -40.25> with a velocity of <-0.68, -0.68> at 190 seconds
+This ball is currently at <-33.92, -33.92> with a velocity of <-0.61, -0.61> at 200 seconds
+This ball is currently at <-38.92, -72.84> with a velocity of <-0.61, -1.22> at 200 seconds
+This ball is currently at <-40.92, -40.92> with a velocity of <-0.61, -0.61> at 200 seconds
+This ball is currently at <-34.53, -34.53> with a velocity of <-0.55, -0.55> at 210 seconds
+This ball is currently at <-39.53, -74.06> with a velocity of <-0.55, -1.09> at 210 seconds
+This ball is currently at <-41.53, -41.53> with a velocity of <-0.55, -0.55> at 210 seconds
+This ball is currently at <-35.08, -35.08> with a velocity of <-0.49, -0.49> at 220 seconds
+This ball is currently at <-40.08, -75.15> with a velocity of <-0.49, -0.98> at 220 seconds
+This ball is currently at <-42.08, -42.08> with a velocity of <-0.49, -0.49> at 220 seconds
+This ball is currently at <-35.57, -35.57> with a velocity of <-0.44, -0.44> at 230 seconds
+This ball is currently at <-40.57, -76.14> with a velocity of <-0.44, -0.89> at 230 seconds
+This ball is currently at <-42.57, -42.57> with a velocity of <-0.44, -0.44> at 230 seconds
+This ball is currently at <-36.01, -36.01> with a velocity of <-0.4, -0.4> at 240 seconds
+This ball is currently at <-41.01, -77.02> with a velocity of <-0.4, -0.8> at 240 seconds
+This ball is currently at <-43.01, -43.01> with a velocity of <-0.4, -0.4> at 240 seconds
+This ball is currently at <-36.41, -36.41> with a velocity of <-0.36, -0.36> at 250 seconds
+This ball is currently at <-41.41, -77.82> with a velocity of <-0.36, -0.72> at 250 seconds
+This ball is currently at <-43.41, -43.41> with a velocity of <-0.36, -0.36> at 250 seconds
+.                                       
+.                                       
+.                                       
+.                                       
+======================================  
+... Testing Clock class ...                
+======================================  
+.                                       
+.                                       
+======================================  
+... Testing SoccerSim no args...        
+======================================  
+Entered to few arguments must be minimum 4
+.                                       
+.                                       
+======================================  
+... Testing SoccerSim one arg...        
+======================================  
+Entered to few arguments must be minimum 4
+.                                       
+.                                       
+======================================  
+... Testing SoccerSim two args...       
+======================================  
+Entered to few arguments must be minimum 4
+.                                       
+.                                       
+======================================  
+... Testing SoccerSim three args...     
+======================================  
+Entered to few arguments must be minimum 4
+.                                       
+.                                       
+======================================  
+... Testing SoccerSim six args...       
+======================================  
+You have entered an invalid number of arguments
+.                                       
+.                                       
+======================================  
+... Testing SoccerSim out of bounds...  
+======================================  
+No collisions
+.                                       
+.                                       
+======================================  
+... Testing SoccerSim negative time slice...
+======================================  
+.                                       
+.                                       
+======================================  
+... Testing SoccerSim time slice too large...
+======================================  
+No collisions
+.                                       
+.                                       
+======================================  
+... Testing SoccerSim time slice value of zero...
+======================================  
+.                                       
+.                                       
+======================================  
+... Testing SoccerSim time slice too large...
+======================================  
+No collisions
+.                                       
+.                                       
+======================================  
+... Testing SoccerSim check for collision...
+======================================  
+Ball 1 This ball is currently at <14.9, 14.9> with a velocity of <0.95, 0.95> at 5 seconds collided with Ball 2 This ball is currently at <15.1, 15.1> with a velocity of <-0.95, -0.95> at 5 seconds
+
+.                                       
+.                                       
+======================================  
+... Testing SoccerSim valid ball should come to rest...
+======================================  
+No collisions
+.                                       
+.                                       
+======================================  
+... Testing SoccerSim valid ball should go out of bounds...
+======================================  
+No collisions
+.                                       
+.                                       
+======================================  
+... Testing SoccerSim valid ball set six balls subsecond time slice...
+======================================  
+Ball 5 This ball is currently at <24.99, 24.99> with a velocity of <1, 1> at 0.5 seconds collided with Ball 6 This ball is currently at <25.05, 25.05> with a velocity of <-4.98, -4.98> at 0.5 seconds
+
+299.5511979025179 and collided with a pole
+299.5511979025179 and collided with a pole
+299.5511979025179 and collided with a pole
+299.5511979025179 and collided with a pole
+299.5511979025179 and collided with a pole
+This ball is currently at <299.76, 299.76> with a velocity of <0.72, 0.72> at 32.8 seconds and collided with a pole
+This ball is currently at <299.76, 299.76> with a velocity of <0.72, 0.72> at 32.8 seconds and collided with a pole
+This ball is currently at <299.76, 299.76> with a velocity of <0.72, 0.72> at 32.8 seconds and collided with a pole
+This ball is currently at <299.76, 299.76> with a velocity of <0.72, 0.72> at 32.8 seconds and collided with a pole
+299.7551889488957 and collided with a pole
+This ball is currently at <300.48, 300.48> with a velocity of <0.72, 0.72> at 32.9 seconds and collided with a pole
+This ball is currently at <300.48, 300.48> with a velocity of <0.72, 0.72> at 32.9 seconds and collided with a pole
+This ball is currently at <300.48, 300.48> with a velocity of <0.72, 0.72> at 32.9 seconds and collided with a pole
+This ball is currently at <300.48, 300.48> with a velocity of <0.72, 0.72> at 32.9 seconds and collided with a pole
+300.4754337599468 and collided with a pole
+.                                       
+.                                       
+======================================  
+... Testing SoccerSim valid ball set five balls 1.234 second time slice...
+======================================  
+Ball 4 This ball is currently at <24.88, 24.88> with a velocity of <0.94, 0.94> at 6.17 seconds collided with Ball 5 This ball is currently at <25.61, 25.61> with a velocity of <-4.7, -4.7> at 6.17 seconds
+
+.                                       
+.                                       
+======================================  
+... Testing SoccerSim valid ball set ten balls 10 second time slice...
+======================================  
+Ball 7 This ball is currently at <100, 100> with a velocity of <180, 180> at 10 seconds collided with Ball 8 This ball is currently at <100, 100> with a velocity of <270, 270> at 10 seconds
+
+Ball 4 This ball is currently at <41, 41> with a velocity of <-89.1, -89.1> at 20 seconds collided with Ball 6 This ball is currently at <40.5, 40.5> with a velocity of <-4.05, -4.05> at 20 seconds
+
+Ball 5 This ball is currently at <26.86, 26.86> with a velocity of <0.31, 0.31> at 110 seconds collided with Ball 9 This ball is currently at <27.24, 27.24> with a velocity of <6.28, 6.28> at 110 seconds
+
+.                                       
+.                                       
+======================================  
+... End of SoccerSim Testing...         
+======================================  
