@@ -259,10 +259,10 @@ public class BrobInt {
                       }
                   }
               }
-              if(gint.isPositive){
-                  return new BrobInt(result);
+              if(gint.isPositive) {
+                  return removeZeros(new BrobInt(result));
               } else {
-                  return new BrobInt("-"+result);
+                  return removeZeros(new BrobInt("-"+result));
               }
           }
       }
@@ -298,19 +298,8 @@ public class BrobInt {
        } else {
            subtractie = new BrobInt("-" + gint.toString());
        }
-       System.out.println("subtractie " + subtractie);
-       System.out.println("This " + this);
 
        return this.addByte(subtractie);
-   }
-
-  /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   *  Method to subtract the value of a BrobIntk passed as argument to this BrobInt using int array
-   *  @param  gint         BrobInt to subtract from this
-   *  @return BrobInt that is the difference of the value of this BrobInt and the one passed in
-   *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-   public BrobInt subtractInt( BrobInt gint ) {
-      throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
    }
 
   /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -319,16 +308,83 @@ public class BrobInt {
    *  @return BrobInt that is the product of the value of this BrobInt and the one passed in
    *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
    public BrobInt multiply( BrobInt gint ) {
-      throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
+       BrobInt checker = new BrobInt("0");
+       BrobInt adder = new BrobInt("0");
+       if (gint.sign == 0){
+           checker = new BrobInt(gint.internalValue);
+       } else {
+           checker = new BrobInt("-" + gint.internalValue);
+       }
+       if (this.sign == 0){
+           adder = new BrobInt(this.internalValue);
+       } else {
+           adder = new BrobInt("-" + this.internalValue);
+       }
+       BrobInt result = ZERO;
+       while (!checker.equals(ZERO)) {
+           if(checker.byteVersion[0] % 2 == 1 ) {
+               result = result.addByte(adder);
+           }
+           checker = divideByTwo(checker);
+           adder = adder.addByte(adder);
+       }
+       return result;
    }
 
+   public BrobInt divideByTwo(BrobInt gint){
+       String result = "";
+       for(int i = gint.byteVersion.length-1; i >= 0; i--) {
+           if(gint.byteVersion[i] % 2 == 1 && i != 0) {
+                result += Integer.toString(gint.byteVersion[i]/2);
+                gint.byteVersion[i-1] = new Byte(Integer.toString(gint.byteVersion[i-1] + 10));
+           }
+           else if(gint.byteVersion[i] % 2 == 0) {
+               result += Integer.toString(gint.byteVersion[i]/2);
+           }
+           else {
+               result += Integer.toString(gint.byteVersion[i]/2);
+           }
+       }
+       BrobInt results = removeZeros(new BrobInt(result));
+       if(gint.sign == 0){
+           return new BrobInt(results.internalValue);
+       }
+       return new BrobInt("-"+results.internalValue);
+   }
+
+   public BrobInt removeZeros(BrobInt s) {
+       String item = s.internalValue.replaceFirst("^0+(?!$)", "");
+       return new BrobInt(item);
+   }
   /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    *  Method to divide the value of this BrobIntk by the BrobInt passed as argument
    *  @param  gint         BrobInt to divide this by
    *  @return BrobInt that is the dividend of this BrobInt divided by the one passed in
    *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
    public BrobInt divide( BrobInt gint ) {
-      throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
+       if (gint.equals(ZERO)) {
+           throw new IllegalArgumentException("Can't divide by zero");
+       }
+       int q = new int[this.length];
+       int[] r = new int[this.byteVersion.length];
+       for (int i = this.byteVersion.length-1; i >= 0; i--){
+           for (int j = r.length-1; i >= 0; i--) {
+                array[j+1] = array[j];
+            }
+            r[0] = (int)this.byteVersion[i];
+            if r.toString
+       }
+//        if D = 0 then error(DivisionByZeroException) end
+// Q := 0                  -- Initialize quotient and remainder to zero
+// R := 0
+// for i := n − 1 .. 0 do  -- Where n is number of bits in N
+//   R := R << 1           -- Left-shift R by 1 bit
+//   R(0) := N(i)          -- Set the least-significant bit of R equal to bit i of the numerator
+//   if R ≥ D then
+//     R := R − D
+//     Q(i) := 1
+//   end
+// end
    }
 
   /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -406,9 +462,11 @@ public class BrobInt {
    public static void main( String[] args ) {
       System.out.println( "\n  Hello, world, from the BrobInt program!!\n" );
       System.out.println( "\n   You should run your tests from the BrobIntTester...\n" );
-      BrobInt x = new BrobInt("234557");
-      BrobInt y = new BrobInt("-10");
-      BrobInt z = x.addByte(y);
+      BrobInt x = new BrobInt("56789");
+      BrobInt y = new BrobInt("37");
+      System.out.println("x " + x);
+      System.out.println("y " + y);
+      BrobInt z = x.multiply(y);
       System.out.println(z);
       System.exit( 0 );
    }
