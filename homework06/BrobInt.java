@@ -356,35 +356,45 @@ public class BrobInt {
        String item = s.internalValue.replaceFirst("^0+(?!$)", "");
        return new BrobInt(item);
    }
+
   /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    *  Method to divide the value of this BrobIntk by the BrobInt passed as argument
    *  @param  gint         BrobInt to divide this by
    *  @return BrobInt that is the dividend of this BrobInt divided by the one passed in
    *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
    public BrobInt divide( BrobInt gint ) {
+       // Allen's way
+       BrobInt giant = new BrobInt("10000000000000000000000");
+       BrobInt quotient = new BrobInt(ZERO.internalValue);
+       boolean trigger = true;
+
        if (gint.equals(ZERO)) {
            throw new IllegalArgumentException("Can't divide by zero");
        }
-       int q = new int[this.length];
-       int[] r = new int[this.byteVersion.length];
-       for (int i = this.byteVersion.length-1; i >= 0; i--){
-           for (int j = r.length-1; i >= 0; i--) {
-                array[j+1] = array[j];
-            }
-            r[0] = (int)this.byteVersion[i];
-            if r.toString
+       if (gint.isBigger(this) == 1) {
+           return ZERO;
        }
-//        if D = 0 then error(DivisionByZeroException) end
-// Q := 0                  -- Initialize quotient and remainder to zero
-// R := 0
-// for i := n − 1 .. 0 do  -- Where n is number of bits in N
-//   R := R << 1           -- Left-shift R by 1 bit
-//   R(0) := N(i)          -- Set the least-significant bit of R equal to bit i of the numerator
-//   if R ≥ D then
-//     R := R − D
-//     Q(i) := 1
-//   end
-// end
+
+       while(!giant.equals(ZERO)) {
+           while((quotient.multiply(gint)).isBigger(this) <= 0) {
+               quotient = quotient.addByte(giant);
+           }
+           quotient = quotient.subtractByte(giant);
+           if (giant.internalValue.length() > 1) {
+               giant = new BrobInt(giant.internalValue.substring(0, giant.internalValue.length() - 1));
+           } else if(trigger) {
+               giant = new BrobInt(ONE.internalValue);
+               trigger = false;
+           } else {
+               giant = new BrobInt(ZERO.internalValue);
+           }
+       }
+       quotient = removeZeros(quotient);
+       if(gint.sign == this.sign) {
+           return quotient;
+       }
+       return new BrobInt("-" + quotient.internalValue);
+
    }
 
   /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -393,7 +403,7 @@ public class BrobInt {
    *  @return BrobInt that is the remainder of division of this BrobInt by the one passed in
    *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
    public BrobInt remainder( BrobInt gint ) {
-      throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
+       return this.subtractByte((this.divide(gint)).multiply(gint));
    }
 
   /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -462,11 +472,11 @@ public class BrobInt {
    public static void main( String[] args ) {
       System.out.println( "\n  Hello, world, from the BrobInt program!!\n" );
       System.out.println( "\n   You should run your tests from the BrobIntTester...\n" );
-      BrobInt x = new BrobInt("56789");
-      BrobInt y = new BrobInt("37");
+      BrobInt x = new BrobInt("53");
+      BrobInt y = new BrobInt("10");
       System.out.println("x " + x);
       System.out.println("y " + y);
-      BrobInt z = x.multiply(y);
+      BrobInt z = x.divide(y);
       System.out.println(z);
       System.exit( 0 );
    }
