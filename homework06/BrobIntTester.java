@@ -384,6 +384,29 @@ public class BrobIntTester {
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
+      try {
+         System.out.println( "    Test : Adding [-10000 + 100] using ints: " );
+         System.out.println( "      expecting: -9900 and got " + new BrobInt("-10000").addByte( new BrobInt("100") ) );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
+
+      try {
+         System.out.println( "    Test 030: Adding g16 and g14 [-100 + 105] using ints: " );
+         System.out.println( "      expecting: 5 and got " + new BrobInt("-100").addByte( new BrobInt("105") ) );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
+
+      try {
+         System.out.println( "    Test 030: Adding g16 and g14 [-123123123 + -123123123] using ints: " );
+         System.out.println( "      expecting: -246246246 and got " + new BrobInt("-123123123").addByte( new BrobInt("-123123123") ) );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
+
+      try {
+         System.out.println( "    Test 030: Adding g16 and g14 [0 + 0] using ints: " );
+         System.out.println( "      expecting: 0 and got " + new BrobInt("0").addByte( new BrobInt("0") ) );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
       System.out.println( "\n\n    TESTING COMPARETO() METHOD:\n" +
                           "    ===========================" );
       try {
@@ -467,6 +490,25 @@ public class BrobIntTester {
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
+      System.out.println( "\n      Test : Subtracting  [0 - 0] using bytes: " );
+      try {
+         System.out.println( "      expecting: 0\n" +
+                             "        and got: " + new BrobInt("0").subtractByte( new BrobInt("0") ) );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
+
+      System.out.println( "\n      Test 043: Subtracting g16 take away g14 [(-100) - (100)] using bytes: " );
+      try {
+         System.out.println( "      expecting: -200\n" +
+                             "        and got: " + new BrobInt("-100").subtractByte( new BrobInt("100") ) );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
+      System.out.println( "\n      Test 043: Subtracting g16 take away g14 [(-999999) - (999999)] using bytes: " );
+      try {
+         System.out.println( "      expecting: 0\n" +
+                             "        and got: " + new BrobInt("-999999").subtractByte( new BrobInt("-999999") ) );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
       System.out.println( "\n\n    TESTING MULTIPLY() METHOD:\n" +
                           "    ==========================" );
       System.out.println( "\n      Test 045: Multiplying g7 by g12 [10 * 20]: " );
@@ -550,6 +592,48 @@ public class BrobIntTester {
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
+      System.out.println( "\n      Test : Multiplying [0 * 56789]: " );
+      try {
+         System.out.println( "      expecting: 0\n" +
+                             "        and got: " + new BrobInt("0").multiply( new BrobInt("56789") ) );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
+
+      System.out.println( "\n      Test 0: Multiplying [-100 * 100]: " );
+      try {
+         System.out.println( "      expecting: -10000\n" +
+                             "        and got: " + new BrobInt("100").multiply( new BrobInt("-100") ) );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
+
+      System.out.println( "\n      Test 055: Multiplying [-50 * -50]: " );
+      try {
+         System.out.println( "      expecting: 2500\n" +
+                             "        and got: " + new BrobInt("-50").multiply( new BrobInt("-50") ) );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
+
+      System.out.println( "\n      Test 055: Multiplying [-50 * 50]: " );
+      try {
+         System.out.println( "      expecting: -2500\n" +
+                             "        and got: " + new BrobInt("-50").multiply( new BrobInt("50") ) );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
+
+      System.out.println( "\n      Test 055: Multiplying [50 * -50]: " );
+      try {
+         System.out.println( "      expecting: -2500\n" +
+                             "        and got: " + new BrobInt("50").multiply( new BrobInt("-50") ) );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
+
+      System.out.println( "\n      Test 055: Multiplying [50 * 50]: " );
+      try {
+         System.out.println( "      expecting: 2500\n" +
+                             "        and got: " + new BrobInt("50").multiply( new BrobInt("50") ) );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
+
       System.out.println( "\n\n    TESTING DIVIDE() METHOD:\n" +
                           "    ========================" );
       System.out.println( "\n      Test 056: Dividing g19 by g20 [56789 / 37]: " );
@@ -566,6 +650,48 @@ public class BrobIntTester {
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
+      System.out.println( "\n      Test: Dividing [152 / 150]: " );
+      try {
+         System.out.println( "      expecting: 1\n" +
+                             "        and got: " + new BrobInt("152").divide( new BrobInt("150") ) );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
+
+      System.out.println( "\n      Test : Dividing [152 / 0]: " );
+      try {
+         System.out.println( "      expecting: 0\n" +
+                             "        and got: " + new BrobInt("152").divide( new BrobInt("0") ) );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
+
+      System.out.println( "\n      Test : Dividing  [-150 / 50]: " );
+      try {
+         System.out.println( "      expecting: -3\n" +
+                             "        and got: " + new BrobInt("-150").divide( new BrobInt("50") ) );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
+
+      System.out.println( "\n      Test : Dividing [150 / -50]: " );
+      try {
+         System.out.println( "      expecting: -3\n" +
+                             "        and got: " + new BrobInt("150").divide( new BrobInt("-50") ) );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
+
+      System.out.println( "\n      Test : Dividing [0 / 37]: " );
+      try {
+         System.out.println( "      expecting: 0\n" +
+                             "        and got: " + new BrobInt("0").divide( new BrobInt("37") ) );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
+
+      System.out.println( "\n      Test: Dividing  [765 / -765]: " );
+      try {
+         System.out.println( "      expecting: -1\n" +
+                             "        and got: " + new BrobInt("765").divide( new BrobInt("-765") ) );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
+
       System.out.println( "\n\n    TESTING REMAINDER() METHOD:\n" +
                           "    ===========================" );
       System.out.println( "\n      Test 058: Modding g17 by g18 [765 % 23]: " );
@@ -579,6 +705,34 @@ public class BrobIntTester {
       try {
          System.out.println( "      expecting: 31\n" +
                              "        and got: " + g19.remainder( g20 ) );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
+
+      System.out.println( "\n      Test : Modding [-1000 % 555]: " );
+      try {
+         System.out.println( "      expecting: -455\n" +
+                             "        and got: " + new BrobInt("-1000").remainder( new BrobInt("555")  ) );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
+
+      System.out.println( "\n      Test : Modding[1000 % -10]: " );
+      try {
+         System.out.println( "      expecting: 0\n" +
+                             "        and got: " + new BrobInt("1000").remainder( new BrobInt("-10") ) );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
+
+      System.out.println( "\n      Test : [123 % 60]: " );
+      try {
+         System.out.println( "      expecting: 3\n" +
+                             "        and got: " + new BrobInt("123").remainder( new BrobInt("60") ) );
+      }
+      catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
+
+      System.out.println( "\n      Test : [-155 % 122]: " );
+      try {
+         System.out.println( "      expecting: -33\n" +
+                             "        and got: " + new BrobInt("-155").remainder( new BrobInt("122") ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 

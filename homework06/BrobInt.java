@@ -24,6 +24,7 @@ import java.util.Arrays;
 public class BrobInt {
 
    public static final BrobInt ZERO     = new BrobInt(  "0" );      /// Constant for "zero"
+   public static final BrobInt negZERO  = new BrobInt(  "-0" );      /// Constant for "neg zero"
    public static final BrobInt ONE      = new BrobInt(  "1" );      /// Constant for "one"
    public static final BrobInt TWO      = new BrobInt(  "2" );      /// Constant for "two"
    public static final BrobInt THREE    = new BrobInt(  "3" );      /// Constant for "three"
@@ -213,7 +214,7 @@ public class BrobInt {
                               }
                           }
                       } else {
-                          if(this.byteVersion[i] > 0) {
+                          if(this.byteVersion[i] >= 0) {
                               result = Integer.toString(this.byteVersion[i]) + result;
                           }
                       }
@@ -245,7 +246,7 @@ public class BrobInt {
                               }
                           }
                       } else {
-                          if(gint.byteVersion[i] > 0) {
+                          if(gint.byteVersion[i] >= 0) {
                               result = Integer.toString(gint.byteVersion[i]) + result;
                           }
                       }
@@ -310,26 +311,47 @@ public class BrobInt {
    public BrobInt multiply( BrobInt gint ) {
        BrobInt checker = new BrobInt("0");
        BrobInt adder = new BrobInt("0");
-       if (gint.sign == 0){
+       if (gint.sign == 0) {
            checker = new BrobInt(gint.internalValue);
        } else {
-           checker = new BrobInt("-" + gint.internalValue);
+           checker = new BrobInt(gint.internalValue);
        }
-       if (this.sign == 0){
+       if (this.sign == 0) {
            adder = new BrobInt(this.internalValue);
        } else {
-           adder = new BrobInt("-" + this.internalValue);
+           adder = new BrobInt(this.internalValue);
        }
+
        BrobInt result = ZERO;
        while (!checker.equals(ZERO)) {
+         if(checker.toString().equals(negZERO.toString())){
+            break;
+         }
            if(checker.byteVersion[0] % 2 == 1 ) {
                result = result.addByte(adder);
            }
            checker = divideByTwo(checker);
            adder = adder.addByte(adder);
        }
-       return result;
+       if (this.sign == gint.sign) {
+          if (this.sign == 1) {
+            return new BrobInt(result.internalValue.substring(1));
+          } else {
+            return result;
+          }
+       }
+       if (this.sign == 1) {
+         return result;
+       } else {
+         return new BrobInt("-" + result.internalValue);
+       }
    }
+
+   /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    *  Method to divide the valye by two for Russian Peasant multiplication
+    *  @param  gint         BrobInt to multiply by this
+    *  @return BrobInt that is the product of the value of this BrobInt and the one passed in
+    *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
    public BrobInt divideByTwo(BrobInt gint){
        String result = "";
@@ -352,9 +374,20 @@ public class BrobInt {
        return new BrobInt("-"+results.internalValue);
    }
 
+   /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    *  Remove preceeding Zeros
+    *  @param  s        BrobInt to remove zeros
+    *  @return BrobInt that is the product of the value of this BrobInt and the one passed in
+    *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
    public BrobInt removeZeros(BrobInt s) {
-       String item = s.internalValue.replaceFirst("^0+(?!$)", "");
-       return new BrobInt(item);
+       if (s.sign == 0) {
+         String item = s.internalValue.replaceFirst("^0+(?!$)", "");
+         return new BrobInt(item);
+       } else {
+         String item = s.internalValue.substring(1).replaceFirst("^0+(?!$)", "");
+        return new BrobInt("-"+item);
+       }
    }
 
   /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -364,7 +397,7 @@ public class BrobInt {
    *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
    public BrobInt divide( BrobInt gint ) {
        // Allen's way
-       BrobInt giant = new BrobInt("10000000000000000000000");
+       BrobInt giant = new BrobInt("1000000000000000000000000000000");
        BrobInt quotient = new BrobInt(ZERO.internalValue);
        boolean trigger = true;
 
@@ -403,7 +436,9 @@ public class BrobInt {
    *  @return BrobInt that is the remainder of division of this BrobInt by the one passed in
    *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
    public BrobInt remainder( BrobInt gint ) {
-       return this.subtractByte((this.divide(gint)).multiply(gint));
+       BrobInt item = this.subtractByte((this.divide(gint)).multiply(gint));
+       item = removeZeros(item);
+       return item;
    }
 
   /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -459,6 +494,7 @@ public class BrobInt {
 
   /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    *  Method to display an Array representation of this BrobInt as its bytes
+   *  @param  d        Byte array
    *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
    public void toArray( byte[] d ) {
       System.out.println( Arrays.toString( d ) );
@@ -472,12 +508,6 @@ public class BrobInt {
    public static void main( String[] args ) {
       System.out.println( "\n  Hello, world, from the BrobInt program!!\n" );
       System.out.println( "\n   You should run your tests from the BrobIntTester...\n" );
-      BrobInt x = new BrobInt("53");
-      BrobInt y = new BrobInt("10");
-      System.out.println("x " + x);
-      System.out.println("y " + y);
-      BrobInt z = x.divide(y);
-      System.out.println(z);
       System.exit( 0 );
    }
 }
